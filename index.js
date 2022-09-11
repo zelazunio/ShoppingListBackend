@@ -15,18 +15,13 @@ app.use(bodyParser.json());
 const routes = require('./routes/routes.js')
 app.use('/', routes);
 
-console.log(process.env);
-console.log(process.env.ATLAS_URI);
-console.log(ATLAS_DATABASE_NAME);
-console.log(ATLAS_DATABASE_COLLECTION_NAME);
-
-dbo.connectToServer(function(err) {
-    if (err) {
-        console.log(err);
-        process.exit();
-    }
+//dbo.connectToServer(function(err) {
+//    if (err) {
+//        console.log(err);
+//        process.exit();
+//    }
 
     app.listen(port, () => console.log(`Server is running on port ${port}`));
-})
+//})
 
 
