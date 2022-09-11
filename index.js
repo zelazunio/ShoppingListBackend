@@ -10,7 +10,7 @@ const port = 3000;
 const dbo = require('./database/mongo');
 
 
-app.use(cors());
+app.use(cors({origin: '*'}));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
