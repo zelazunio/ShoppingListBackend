@@ -15,6 +15,8 @@ app.use(bodyParser.json());
 const routes = require('./routes/routes.js')
 app.use('/', routes);
 
+console.log(process.env);
+
 //dbo.connectToServer(function(err) {
 //    if (err) {
 //        console.log(err);
