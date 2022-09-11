@@ -4,7 +4,7 @@ const cors = require('cors');
 require('dotenv').config({path: './config.env'});
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const dbo = require('./database/mongo');
 
 
