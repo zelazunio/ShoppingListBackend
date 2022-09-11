@@ -15,13 +15,13 @@ app.use(bodyParser.json());
 const routes = require('./routes/routes.js')
 app.use('/', routes);
 
-app.use(function(req, res, next) {
+/* app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
     res.header("Access-Control-Allow-Credentials", true);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
     next();
-});
+}); */
 
 dbo.connectToServer(function(err) {
     if (err) {
