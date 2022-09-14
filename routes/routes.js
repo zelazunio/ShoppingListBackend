@@ -76,10 +76,11 @@ router.put('/item', (req, res) => {
     const dbConnect = dbo.getDb();
     try {
         let setObject = {};
-        if (req.body.done) setObject.done = req.body.done;
+        if (req.body.done !== null && req.body.done !== 'undefined') setObject.done = req.body.done;
         if (req.body.item) setObject.item = req.body.item;
         if (req.body.category) setObject.category = req.body.category;
         if (req.body.vendor) setObject.vendor = req.body.vendor;
+        console.log(setObject);
         dbConnect
             .collection(process.env.ATLAS_DATABASE_COLLECTION_NAME)
             .updateOne(
