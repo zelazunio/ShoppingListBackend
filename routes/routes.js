@@ -72,6 +72,35 @@ router.post('/item', (req, res) => {
     }
 })
 
+router.post('/items', (req, res) => {
+    const dbConnect = dbo.getDb();
+    try {
+        let items = [];
+        let requestedItems = req.body.items.split(',');
+        requestedItems.forEach(item=>{
+            item.trim();
+            items.push({
+                item,
+                done: false,
+                category: req.body.category,
+                vendor: req.body.vendor
+            })
+        });
+        dbConnect
+            .collection(process.env.ATLAS_DATABASE_COLLECTION_NAME)
+            .insertMany(items, 
+                (err, insertedElements) => {
+                if (err) {
+                res.json({error: err}) } 
+                else
+                res.json({ itemsAdded: Object.values(insertedElements.insertedIds) })
+            })
+    }
+    catch(err){
+        res.json({ error: err })
+    }
+})
+
 router.put('/item', (req, res) => {
     const dbConnect = dbo.getDb();
     try {
@@ -80,7 +109,6 @@ router.put('/item', (req, res) => {
         if (req.body.item) setObject.item = req.body.item;
         if (req.body.category) setObject.category = req.body.category;
         if (req.body.vendor) setObject.vendor = req.body.vendor;
-        console.log(setObject);
         dbConnect
             .collection(process.env.ATLAS_DATABASE_COLLECTION_NAME)
             .updateOne(
