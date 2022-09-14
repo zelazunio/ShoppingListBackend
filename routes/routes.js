@@ -90,7 +90,7 @@ router.put('/item', (req, res) => {
                     if (err) {
                         res.json({ error: err })
                     }
-                    res.json({ itemAUpdated: req.body._id })
+                    res.json({ itemUpdated: req.body._id })
                 })
     }
     catch(err){
